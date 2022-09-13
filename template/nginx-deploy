@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  labels:
+    app: Tomcat
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      app: Tomcat
+  template:
+    metadata:
+      labels:
+        app: Tomcat
+    spec:
+      containers:
+      - name: Tomcat
+        image: docker.io/{{ .Values.deployment.name }}:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: {{.Values.VolumeMounts.mountpaths}}
+          name: Tomcat-conf
+          subPath: index.html
+      volumes:
+      - name: Tomcat-conf
+        configMap:
+          name: Tomcat-index-html-configmap

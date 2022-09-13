@@ -1,0 +1,9 @@
+deployment: docker.io/{{ .Values.deployment.name }}:latest
+  replicaCount: 3
+  name: Tomcat
+service:
+  port: 8080
+  targetPort: 8080
+  name: Tomcat
+VolumeMounts:
+ mountpaths: /usr/share/Tomcat/html/index.html

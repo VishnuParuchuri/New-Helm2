@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  index.html: |+
+    <!DOCTYPE html>
+    <html>
+    <body>
+
+    <h1>My First Heading</h1>
+
+    <p>My first paragraph.</p>
+
+    </body>
+    </html>
+
+
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2022-07-08T07:25:33Z"
+  name: nginx-index-html-configmap
+  namespace: nginx
+  resourceVersion: "15525"
+  uid: {{ .Values.config-map.uid }}
